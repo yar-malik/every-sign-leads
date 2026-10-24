@@ -1,0 +1,301 @@
+<template>
+  <style>
+
+@font-face { font-family: "Amiri Quran"; src: url("assets/fonts/amiri-quran-arabic-400-normal.woff2") format("woff2"); }
+@font-palette-values --gold { font-family: "Amiri Quran"; override-colors: 0 #D9B977, 1 #D9B977, 2 #D9B977, 3 #D9B977, 4 #D9B977, 5 #D9B977, 6 #D9B977, 7 #D9B977; }
+#root { position: absolute; inset: 0; }
+#film-wrap { position: absolute; inset: 0; background: #07070A; }
+#film-cv { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+.t { position: absolute; text-align: center; opacity: 0; }
+.g { color: #D9B977; }
+.hook { font-family: "EB Garamond", serif; font-weight: 500; font-size: 176px; line-height: 1; color: #F4F1EA; opacity: 1; }
+.kicker { font-family: "EB Garamond", serif; font-size: 30px; letter-spacing: 0.32em; text-transform: uppercase; color: #D9B977; }
+.kicker.big { font-family: "Inter", sans-serif; font-weight: 600; font-size: 40px; letter-spacing: 0.22em; }
+.head { font-family: "EB Garamond", serif; font-weight: 500; font-size: 60px; letter-spacing: 0.14em; text-transform: uppercase; }
+.gold { color: #D9B977; }
+.silver { color: #C9D1DE; }
+.ar { direction: rtl; font-family: "Amiri Quran", serif; font-size: 110px; line-height: 1.5; }
+.ar.gold { font-palette: --gold; text-shadow: 0 0 34px rgba(217,185,119,0.45); }
+#verse { position: absolute; left: 70px; width: 940px; top: 270px; text-align: center; direction: rtl; font-family: "Amiri Quran", serif;
+  font-palette: --gold; font-size: 72px; line-height: 1.75; color: #D9B977; opacity: 0; }
+#verse .vw { display: inline-block; opacity: 0.2; }
+.en { text-wrap: balance; font-family: "EB Garamond", serif; font-style: italic; font-size: 46px; line-height: 1.24; color: #F4F1EA; }
+.ref { font-family: "Inter", sans-serif; font-weight: 500; font-size: 28px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(217,185,119,0.8); }
+.endq { font-family: "EB Garamond", serif; font-weight: 500; font-size: 124px; line-height: 1.04; color: #F4F1EA; }
+.brandline { font-family: "EB Garamond", serif; font-style: italic; font-size: 42px; color: rgba(244,241,234,0.75); }
+.note { font-family: "Inter", sans-serif; font-size: 28px; letter-spacing: 0.02em; color: rgba(244,241,234,0.6); }
+.sub { position: absolute; left: 110px; width: 860px; top: 1460px; text-align: center; font-family: "EB Garamond", serif;
+  font-style: italic; font-weight: 500; font-size: 52px; line-height: 1.22; color: #F4F1EA; opacity: 0;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.9); text-wrap: balance; }
+
+  </style>
+  <div id="root" data-composition-id="film" data-width="1080" data-height="1920" data-duration="60.0">
+    <div id="film-wrap" class="clip" data-start="0" data-duration="60.0" data-track-index="0">
+      <canvas id="film-cv" width="1080" height="1920"></canvas>
+      <div id="hook" class="t hook" style="left:90px;width:900px;top:520px">Look <span class='g'>up.</span></div>
+      <div id="brand" class="t kicker" style="left:90px;width:900px;top:150px">· Every Sign Leads ·</div>
+      <div id="a-sama" class="t ar gold" style="left:90px;width:900px;top:260px">ٱلسَّمَـٰوَٰتِ</div>
+      <div id="r-sama" class="t ref" style="left:90px;width:900px;top:470px">the heavens · 3:190</div>
+      <div id="a-ard" class="t ar gold" style="left:90px;width:900px;top:260px">وَٱلْأَرْضِ</div>
+      <div id="r-ard" class="t ref" style="left:90px;width:900px;top:470px">the earth · 3:190</div>
+      <div id="h-admire" class="t head gold" style="left:30px;width:480px;top:320px">To admire</div>
+      <div id="h-reflect" class="t head silver" style="left:570px;width:480px;top:320px">To reflect</div>
+      <div id="e-190" class="t en" style="left:120px;width:840px;top:1210px">“In the creation of the heavens and the earth, and the alternation of night and day, are signs for people of understanding.”</div>
+      <div id="r-190" class="t ref" style="left:90px;width:900px;top:1420px">Ali ‘Imran 3:190</div>
+      <div id="end-q" class="t endq" style="left:90px;width:900px;top:600px">Who <span class='g'>created</span><br>all of this?</div>
+      <div id="end-tag" class="t kicker big" style="left:90px;width:900px;top:1010px">Discover your Creator</div>
+      <div id="end-brand" class="t brandline" style="left:90px;width:900px;top:1080px">Every Sign Leads</div>
+      <div id="end-note" class="t note" style="left:90px;width:900px;top:1720px">Verse translation is our own wording.</div>
+      <div id="verse"><span class="vw" id="vw0">إِنَّ</span> <span class="vw" id="vw1">فِى</span> <span class="vw" id="vw2">خَلْقِ</span> <span class="vw" id="vw3">ٱلسَّمَـٰوَٰتِ</span> <span class="vw" id="vw4">وَٱلْأَرْضِ</span> <span class="vw" id="vw5">وَٱخْتِلَـٰفِ</span> <span class="vw" id="vw6">ٱلَّيْلِ</span> <span class="vw" id="vw7">وَٱلنَّهَارِ</span> <span class="vw" id="vw8">لَـَٔايَـٰتٍ</span> <span class="vw" id="vw9">لِّأُو۟لِى</span> <span class="vw" id="vw10">ٱلْأَلْبَـٰبِ</span></div>
+      <div id="sub-l01" class="sub">When was the last time you looked up at the sky...</div>
+      <div id="sub-l02" class="sub">and truly wondered?</div>
+      <div id="sub-l03" class="sub">Beyond the clouds...</div>
+      <div id="sub-l04" class="sub">beyond the stars...</div>
+      <div id="sub-l05" class="sub">are galaxies stretching farther than we can imagine.</div>
+      <div id="sub-l06" class="sub">And here we are.</div>
+      <div id="sub-l07" class="sub">On this tiny world.</div>
+      <div id="sub-l08" class="sub">Alive.</div>
+      <div id="sub-l09" class="sub">Able to wonder about it all.</div>
+      <div id="sub-l10" class="sub">But what if the universe is more than something to admire?</div>
+      <div id="sub-l11" class="sub">What if it's something to reflect upon?</div>
+      <div id="sub-l15" class="sub">So tonight...</div>
+      <div id="sub-l16" class="sub">look up.</div>
+      <div id="sub-l17" class="sub">Reflect on what you see.</div>
+      <div id="sub-l18" class="sub">And ask yourself...</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const cv = document.getElementById("film-cv"), ctx = cv.getContext("2d");
+      const T = {"l01": 0.25, "l02": 3.9, "l03": 7.0, "l04": 9.1, "l05": 11.3, "l06": 16.9, "l07": 18.8, "l08": 21.1, "l09": 22.7, "l10": 26.6, "l11": 31.0, "l12": 35.6, "l13": 40.6, "l14": 43.2, "l15": 48.0, "l16": 49.6, "l17": 51.3, "l18": 53.7, "l19": 55.6, "l20": 58.1}, LEN = {"l01": 2.779, "l02": 1.379, "l03": 1.339, "l04": 1.353, "l05": 3.136, "l06": 1.058, "l07": 1.428, "l08": 0.781, "l09": 1.653, "l10": 3.531, "l11": 2.367, "l12": 4.422, "l13": 1.926, "l14": 2.631, "l15": 0.981, "l16": 0.732, "l17": 1.566, "l18": 1.345, "l19": 1.677, "l20": 1.577}, DUR = 60.0;
+
+const TAU = Math.PI * 2, GOLD = "217,185,119", SILVER = "201,209,222";
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const sstep = (a, b, v) => { const x = clamp((v - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
+const lerp = (a, b, x) => a + (b - a) * x;
+const env = (t, a, b, f) => sstep(a, a + f, t) * (1 - sstep(b - f, b, t));
+function rng(seed) { return function () { seed |= 0; seed = (seed + 0x6D2B79F5) | 0; let q = Math.imul(seed ^ (seed >>> 15), 1 | seed); q = (q + Math.imul(q ^ (q >>> 7), 61 | q)) ^ q; return ((q ^ (q >>> 14)) >>> 0) / 4294967296; }; }
+function gauss(r) { return Math.sqrt(-2 * Math.log(r() + 1e-9)) * Math.cos(TAU * r()); }
+const r = rng(11);
+const dust = [], sky = [], deep = [], spiral = [];
+for (let i = 0; i < 220; i++) dust.push({ x: r() * 1080, y: r() * 1920, s: 0.6 + r() * 1.5, p: r() * TAU, v: 3 + r() * 8, a: 0.05 + r() * 0.2 });
+for (let i = 0; i < 160; i++) sky.push({ x: 60 + r() * 960, y: 220 + r() * 1000, b: Math.pow(r(), 3), p: r() * TAU, d: r() });
+for (let i = 0; i < 700; i++) deep.push({ x: (r() - 0.5) * 2.2, y: (r() - 0.5) * 3.4, z: r(), b: Math.pow(r(), 2) });
+for (let i = 0; i < 1400; i++) { const arm = i % 2, d = Math.pow(r(), 1.2); spiral.push({ a: arm * Math.PI + d * 8.5 + gauss(r) * 0.16 * (1.2 - d), d, s: r() < 0.06 ? 2.6 : 1.4 }); }
+
+function glow(x, y, rad, col, a) {
+  if (a <= 0) return;
+  const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+  g.addColorStop(0, "rgba(" + col + "," + (0.38 * a).toFixed(3) + ")"); g.addColorStop(1, "rgba(" + col + ",0)");
+  ctx.fillStyle = g; ctx.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+}
+function stroke(col, a, w) { ctx.strokeStyle = "rgba(" + col + "," + clamp(a, 0, 1).toFixed(3) + ")"; ctx.lineWidth = w; }
+function dot(x, y, rad, col, a) { ctx.fillStyle = "rgba(" + col + "," + clamp(a, 0, 1).toFixed(3) + ")"; ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.fill(); }
+function line(x0, y0, x1, y1) { ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke(); }
+// An eight-point line star.
+function star8(x, y, R, col, a) {
+  if (a <= 0) return;
+  glow(x, y, R * 3, col, a);
+  stroke(col, a, 2.4); ctx.beginPath();
+  for (let i = 0; i < 16; i++) { const q = i / 16 * TAU - Math.PI / 2, rr = i % 2 ? R * 0.38 : R; ctx.lineTo(x + Math.cos(q) * rr, y + Math.sin(q) * rr); }
+  ctx.closePath(); ctx.stroke();
+  dot(x, y, R * 0.14, col, a);
+}
+// A cloud outline: a row of arcs over a flat base.
+function cloud(x, y, s, a) {
+  if (a <= 0) return;
+  stroke(GOLD, a, 2); ctx.beginPath(); ctx.moveTo(x - 120 * s, y);
+  [[-80, 0, 44], [-20, -24, 60], [50, -6, 48], [100, 8, 30]].forEach(([dx, dy, rr]) => ctx.arc(x + dx * s, y + dy * s, rr * s, Math.PI, 0, false));
+  ctx.lineTo(x - 120 * s, y + 38 * s * 0); ctx.stroke();
+  line(x - 140 * s, y + 38 * s, x + 140 * s, y + 38 * s);
+}
+// A line globe: outline, latitude lines and turning meridians.
+function globe(x, y, R, a, t) {
+  if (a <= 0) return;
+  glow(x, y, R * 2.2, GOLD, a * 0.6);
+  stroke(GOLD, a * 0.9, 2.4); ctx.beginPath(); ctx.arc(x, y, R, 0, TAU); ctx.stroke();
+  stroke(GOLD, a * 0.4, 1.4);
+  for (const k of [-0.6, -0.3, 0, 0.3, 0.6]) { const yy = y + k * R, w = Math.sqrt(1 - k * k) * R; ctx.beginPath(); ctx.ellipse(x, yy, w, w * 0.16, 0, 0, TAU); ctx.stroke(); }
+  for (let i = 0; i < 4; i++) { const ph = (i / 4 + t * 0.04) % 1, w = Math.abs(Math.cos(ph * Math.PI)) * R; ctx.beginPath(); ctx.ellipse(x, y, Math.max(0.5, w), R, 0, 0, TAU); ctx.stroke(); }
+}
+function horizon(y, w, a) {
+  stroke(GOLD, 0.5 * a, 1.6); line(540 - 420 * w, y, 540 + 420 * w, y);
+}
+function skyStars(t, a, y0, y1) {
+  for (const s of sky) {
+    if (s.y < y0 || s.y > y1) continue;
+    const tw = 0.6 + 0.4 * Math.sin(t * 1.4 + s.p);
+    dot(s.x, s.y, 1.2 + s.b * 2.4, s.d < 0.3 ? SILVER : GOLD, a * (0.25 + 0.75 * s.b) * tw * sstep(s.d * 4, s.d * 4 + 1.5, t + 4));
+  }
+}
+
+function draw(t) {
+  ctx.fillStyle = "#07070A"; ctx.fillRect(0, 0, 1080, 1920);
+  const bg = ctx.createRadialGradient(540, 820, 0, 540, 820, 1100);
+  bg.addColorStop(0, "rgba(40,32,22,0.55)"); bg.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, 1080, 1920);
+  for (const d of dust) {
+    const y = ((d.y - t * d.v) % 1920 + 1920) % 1920, a = d.a * (0.6 + 0.4 * Math.sin(t * 0.8 + d.p));
+    ctx.fillStyle = "rgba(" + GOLD + "," + a.toFixed(3) + ")"; ctx.fillRect(d.x, y, d.s, d.s);
+  }
+
+  // B1 / B6: the horizon, the stars coming out, a dotted line of sight rising.
+  const open = 1 - sstep(6.2, 7.4, t), close = sstep(T.l15 - 0.6, T.l15 + 0.8, t) * (1 - sstep(T.l19 - 0.6, T.l19 + 0.4, t));
+  const hz = Math.max(open, close);
+  if (hz > 0) {
+    const w = t < 10 ? sstep(0, 1.6, t) : sstep(T.l15 - 0.6, T.l15 + 1.4, t);
+    horizon(1300, w, hz);
+    skyStars(t < 10 ? t : t - T.l15 + 1, hz, 220, 1250);
+    const rise = t < 10 ? sstep(1.0, 5.6, t) : sstep(T.l16, T.l16 + 2.4, t);
+    for (let i = 0; i < 22; i++) { const u = i / 22; if (u > rise) break; dot(540, 1290 - u * 640, 2.4, GOLD, hz * (1 - u * 0.6)); }
+    star8(540, 640, 26, GOLD, hz * sstep(0.85, 1, rise));
+  }
+
+  // B2: beyond the clouds, beyond the stars, a galaxy.
+  const b2 = env(t, 6.6, T.l06 - 0.2, 0.8);
+  if (b2 > 0) {
+    const u = t - 6.6;
+    [[300, 900, 1.0, 0], [780, 1120, 0.8, 0.4], [520, 1350, 1.2, 0.8]].forEach(([x, y, s, o]) => {
+      const fall = sstep(o, 3.4 + o, u);
+      cloud(x, y + fall * 900, s * (1 + fall * 0.6), b2 * 0.55 * (1 - fall));
+    });
+    const travel = 0.05 * u + 0.5 * sstep(1.8, 5, u);
+    for (const s of deep) {
+      let z = s.z - travel; z = z - Math.floor(z); z = 0.05 + z * 0.95;
+      const x = 540 + s.x / z * 420, y = 860 + s.y / z * 420;
+      if (x < 0 || x > 1080 || y < 0 || y > 1920) continue;
+      const near = 1 - z, a = b2 * clamp(near * 1.3, 0, 1) * (0.3 + 0.7 * s.b) * sstep(1.2, 2.2, u) * (1 - 0.6 * sstep(4.5, 7, u));
+      dot(x, y, 0.8 + near * near * 3, GOLD, a);
+    }
+    const ga = sstep(4.2, 6.4, u) * b2;
+    if (ga > 0) {
+      const sc = lerp(0.25, 1, sstep(4.2, 9.5, u));
+      ctx.save(); ctx.translate(540, 860); ctx.rotate(-0.4); ctx.scale(sc, sc * 0.62);
+      for (const q of spiral) { const a = q.a + u * 0.05 * (1.5 - q.d); dot(Math.cos(a) * q.d * 420, Math.sin(a) * q.d * 420, q.s, q.d < 0.15 ? "255,236,205" : GOLD, ga * (0.35 + 0.5 * (1 - q.d))); }
+      ctx.restore();
+      glow(540, 860, 160 * sc, GOLD, ga * 1.6);
+    }
+  }
+
+  // B3: here we are — a line globe that pulls back until it is small; a pulse at "Alive."
+  const b3 = env(t, T.l06 - 0.4, T.l10 - 0.2, 0.8);
+  if (b3 > 0) {
+    const k = sstep(T.l07 - 0.4, T.l08 + 0.4, t);
+    const R = lerp(300, 70, k);
+    skyStars(t, b3 * k * 0.8, 200, 1700);
+    globe(540, 860, R, b3, t);
+    const pulse = env(t, T.l08, T.l09 + LEN.l09 + 0.6, 0.5);
+    if (pulse > 0) { dot(540, 860, 6, "255,240,210", b3 * pulse); stroke(GOLD, b3 * pulse * (1 - ((t * 0.7) % 1)), 1.6); ctx.beginPath(); ctx.arc(540, 860, 12 + ((t * 0.7) % 1) * 110, 0, TAU); ctx.stroke(); }
+  }
+
+  // B4: to admire | to reflect — the same star, then its reflection in still water.
+  const b4 = env(t, T.l10 - 0.2, T.l12 - 0.2, 0.8);
+  if (b4 > 0) {
+    const div = sstep(T.l10, T.l10 + 1.4, t);
+    stroke(GOLD, 0.28 * b4, 1.5); line(540, 440, 540, lerp(440, 1300, div));
+    star8(270, 760, 50, GOLD, b4 * sstep(T.l10 + 0.3, T.l10 + 1.4, t));
+    stroke(GOLD, 0.4 * b4, 1.5); line(110, 1000, 430, 1000);
+    const rf = b4 * sstep(T.l11, T.l11 + 1.2, t);
+    star8(810, 760, 50, SILVER, rf);
+    stroke(SILVER, 0.5 * rf, 1.5); line(650, 1000, 970, 1000);
+    // Its reflection: the same star mirrored under the waterline, softer, with ripples.
+    star8(810 + Math.sin(t * 2) * 3, 1240, 50, SILVER, rf * 0.4);
+    for (let i = 0; i < 4; i++) { stroke(SILVER, rf * 0.25, 1.2); const yy = 1170 + i * 44 + Math.sin(t * 1.6 + i) * 4; line(700 + i * 12, yy, 920 - i * 12, yy); }
+  }
+
+  // B5: 3:190 — a disc turning between night and day.
+  const b5 = env(t, T.l12 - 0.3, T.l15 - 0.2, 0.9);
+  if (b5 > 0) {
+    const cx = 540, cy = 900, R = 170, ang = (t - T.l12) * 0.5;
+    glow(cx, cy, R * 2, GOLD, b5 * 0.5);
+    ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.clip();
+    ctx.translate(cx, cy); ctx.rotate(ang);
+    ctx.fillStyle = "rgba(" + GOLD + "," + (0.22 * b5).toFixed(3) + ")"; ctx.fillRect(0, -R, R, R * 2);
+    ctx.restore();
+    stroke(GOLD, b5 * 0.85, 2.4); ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.stroke();
+    stroke(GOLD, b5 * 0.6, 1.6); line(cx - Math.sin(ang) * R, cy + Math.cos(ang) * R, cx + Math.sin(ang) * R, cy - Math.cos(ang) * R);
+    for (let i = 0; i < 36; i++) { const q = i / 36 * TAU; stroke(GOLD, b5 * 0.3, 1.2); line(cx + Math.cos(q) * (R + 18), cy + Math.sin(q) * (R + 18), cx + Math.cos(q) * (R + 30), cy + Math.sin(q) * (R + 30)); }
+  }
+
+  const vg = ctx.createRadialGradient(540, 900, 520, 540, 960, 1300);
+  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,0.65)");
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, 1080, 1920);
+  const fade = sstep(DUR - 1.0, DUR - 0.05, t);
+  if (fade > 0) { ctx.fillStyle = "rgba(0,0,0," + fade.toFixed(3) + ")"; ctx.fillRect(0, 0, 1080, 1920); }
+}
+
+      const tl = gsap.timeline({ paused: true });
+      const clock = { t: 0 };
+      tl.to(clock, { t: 60.0, duration: 60.0, ease: "none", onUpdate: () => draw(clock.t) }, 0);
+      tl.fromTo("#hook", { scale: 1.06 }, { scale: 1, duration: 6.00, ease: "power1.out" }, 0);
+      tl.to("#hook", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 6.15);
+      tl.fromTo("#brand", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 0.60);
+      tl.to("#brand", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 47.15);
+      tl.fromTo("#a-sama", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 10.70);
+      tl.to("#a-sama", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 15.95);
+      tl.fromTo("#r-sama", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 11.00);
+      tl.to("#r-sama", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 15.95);
+      tl.fromTo("#a-ard", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 17.20);
+      tl.to("#a-ard", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 25.75);
+      tl.fromTo("#r-ard", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 17.50);
+      tl.to("#r-ard", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 25.75);
+      tl.fromTo("#h-admire", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 26.80);
+      tl.to("#h-admire", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 34.75);
+      tl.fromTo("#h-reflect", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 31.20);
+      tl.to("#h-reflect", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 34.75);
+      tl.fromTo("#e-190", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 36.20);
+      tl.to("#e-190", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 47.15);
+      tl.fromTo("#r-190", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 41.00);
+      tl.to("#r-190", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 47.15);
+      tl.fromTo("#end-q", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 55.55);
+      tl.fromTo("#end-tag", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 57.50);
+      tl.fromTo("#end-brand", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 57.90);
+      tl.fromTo("#end-note", { opacity: 0, filter: "blur(8px)", y: 10 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.7, ease: "power2.out" }, 56.00);
+      tl.fromTo("#verse", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 35.20);
+      tl.to("#verse", { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power1.in" }, 47.15);
+      tl.to("#vw0", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 35.60);
+      tl.to("#vw1", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 36.48);
+      tl.to("#vw2", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 37.37);
+      tl.to("#vw3", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 38.25);
+      tl.to("#vw4", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 39.14);
+      tl.to("#vw5", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 40.60);
+      tl.to("#vw6", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 41.24);
+      tl.to("#vw7", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 41.88);
+      tl.to("#vw8", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 43.20);
+      tl.to("#vw9", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 44.08);
+      tl.to("#vw10", { opacity: 1, textShadow: "0 0 30px rgba(217,185,119,0.6)", duration: 0.4, ease: "power2.out" }, 44.95);
+      tl.fromTo("#sub-l01", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0.15);
+      tl.to("#sub-l01", { opacity: 0, duration: 0.3, ease: "power1.in" }, 3.43);
+      tl.fromTo("#sub-l02", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 3.80);
+      tl.to("#sub-l02", { opacity: 0, duration: 0.3, ease: "power1.in" }, 5.68);
+      tl.fromTo("#sub-l03", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 6.90);
+      tl.to("#sub-l03", { opacity: 0, duration: 0.3, ease: "power1.in" }, 8.65);
+      tl.fromTo("#sub-l04", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 9.00);
+      tl.to("#sub-l04", { opacity: 0, duration: 0.3, ease: "power1.in" }, 10.85);
+      tl.fromTo("#sub-l05", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 11.20);
+      tl.to("#sub-l05", { opacity: 0, duration: 0.3, ease: "power1.in" }, 14.84);
+      tl.fromTo("#sub-l06", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 16.80);
+      tl.to("#sub-l06", { opacity: 0, duration: 0.3, ease: "power1.in" }, 18.35);
+      tl.fromTo("#sub-l07", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 18.70);
+      tl.to("#sub-l07", { opacity: 0, duration: 0.3, ease: "power1.in" }, 20.63);
+      tl.fromTo("#sub-l08", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 21.00);
+      tl.to("#sub-l08", { opacity: 0, duration: 0.3, ease: "power1.in" }, 22.25);
+      tl.fromTo("#sub-l09", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 22.60);
+      tl.to("#sub-l09", { opacity: 0, duration: 0.3, ease: "power1.in" }, 24.75);
+      tl.fromTo("#sub-l10", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 26.50);
+      tl.to("#sub-l10", { opacity: 0, duration: 0.3, ease: "power1.in" }, 30.53);
+      tl.fromTo("#sub-l11", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 30.90);
+      tl.to("#sub-l11", { opacity: 0, duration: 0.3, ease: "power1.in" }, 33.77);
+      tl.fromTo("#sub-l15", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 47.90);
+      tl.to("#sub-l15", { opacity: 0, duration: 0.3, ease: "power1.in" }, 49.15);
+      tl.fromTo("#sub-l16", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 49.50);
+      tl.to("#sub-l16", { opacity: 0, duration: 0.3, ease: "power1.in" }, 50.73);
+      tl.fromTo("#sub-l17", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 51.20);
+      tl.to("#sub-l17", { opacity: 0, duration: 0.3, ease: "power1.in" }, 53.25);
+      tl.fromTo("#sub-l18", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 53.60);
+      tl.to("#sub-l18", { opacity: 0, duration: 0.3, ease: "power1.in" }, 55.15);
+      draw(0);
+      window.__timelines["film"] = tl;
+    })();
+  </script>
+</template>

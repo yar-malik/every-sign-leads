@@ -18,6 +18,8 @@ Full how-to (setup, making a video, posting): `README.md`. Keep its video table 
 - 02 "Sun and Moon" rendered: `videos/sun-and-moon/renders/sun-and-moon.mp4` (56 s), styled on
   `reference-video/` (two reference reels from Shabbar: text-led, gold line art, no voice).
   Its `scripts/mix.sh` sets timing automatically from a `gap` per line in narration.json.
+- 01b "Look up" restyled in the reference look: `videos/look-up-v2/` (same voice), unlisted at
+  https://www.youtube.com/watch?v=pvqzYf-fPQ8.
 
 ## Content rules (same as Quran Visualized)
 

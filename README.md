@@ -10,6 +10,7 @@ Content and brief come from Shabbar Shirazi. Sister project to `quran-visualized
 | # | Video | Length | Watch | Source |
 |---|-------|--------|-------|--------|
 | 01 | Look up | 60 s | not posted yet | [`videos/look-up/`](videos/look-up/) · [render](videos/look-up/renders/look-up.mp4) |
+| 01b | Look up (reference style) | 60 s | [YouTube (unlisted)](https://www.youtube.com/watch?v=pvqzYf-fPQ8) | [`videos/look-up-v2/`](videos/look-up-v2/) · [render](videos/look-up-v2/renders/look-up-v2.mp4) |
 | 02 | Sun and Moon | 56 s | [YouTube (unlisted)](https://www.youtube.com/watch?v=iGrbxNkoPyg) | [`videos/sun-and-moon/`](videos/sun-and-moon/) · [render](videos/sun-and-moon/renders/sun-and-moon.mp4) |
 
 Each video folder has a `REVIEW.md`: what's in it, how it was checked, and what's still open.
@@ -68,7 +69,7 @@ npx hyperframes@0.8.188 render -o renders/sun-and-moon.mp4
 - Change what's **shown**: edit `build.py` (the `TEXT` list for words on screen, `DRAW` for the
   pictures), then build again.
 - To start a new video, copy `videos/sun-and-moon/` and replace its narration and `build.py` beats.
-  (`look-up/` uses hand-set `timing.json` instead of `gap`.)
+  (`look-up/` and `look-up-v2/` use hand-set `timing.json` instead of `gap`; v2 reuses v1's voice files.)
 
 The bed is the pilot's wind + tone, trimmed to the video length:
 `ffmpeg -i ../look-up/assets/audio/bed.wav -af "atrim=0:56,afade=t=out:st=53:d=3" assets/audio/bed.wav`
