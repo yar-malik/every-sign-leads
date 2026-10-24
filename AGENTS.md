@@ -8,11 +8,16 @@ Angle vs Quran Visualized: QV tells *stories* (prophets, companions) in a gold-e
 Every Sign Leads is about *signs in creation* (sky, galaxies, Earth, night and day), AI-narrated in
 English, 60 s, slower and contemplative.
 
+Full how-to (setup, making a video, posting): `README.md`. Keep its video table up to date.
+
 ## Status — 2026-10-25
 
 - Folder only; **no app scaffolded yet**. When it is, copy the Quran Visualized stack (Expo SDK 57,
   expo-router, NativeWind, Zustand) and use the owner's existing accounts (see QV `AGENTS.md`).
 - Pilot 01 "Look up" rendered: `videos/look-up/renders/look-up.mp4` (60 s, 1080x1920).
+- 02 "Sun and Moon" rendered: `videos/sun-and-moon/renders/sun-and-moon.mp4` (56 s), styled on
+  `reference-video/` (two reference reels from Shabbar: text-led, gold line art, no voice).
+  Its `scripts/mix.sh` sets timing automatically from a `gap` per line in narration.json.
 
 ## Content rules (same as Quran Visualized)
 
