@@ -1,0 +1,656 @@
+[
+  {
+    "text": "When",
+    "start": 0.25,
+    "end": 0.32,
+    "id": "w0"
+  },
+  {
+    "text": "was",
+    "start": 0.32,
+    "end": 0.56,
+    "id": "w1"
+  },
+  {
+    "text": "the",
+    "start": 0.56,
+    "end": 0.8,
+    "id": "w2"
+  },
+  {
+    "text": "last",
+    "start": 0.8,
+    "end": 1.12,
+    "id": "w3"
+  },
+  {
+    "text": "time",
+    "start": 1.12,
+    "end": 1.44,
+    "id": "w4"
+  },
+  {
+    "text": "you",
+    "start": 1.44,
+    "end": 1.68,
+    "id": "w5"
+  },
+  {
+    "text": "looked",
+    "start": 1.68,
+    "end": 2.13,
+    "id": "w6"
+  },
+  {
+    "text": "up",
+    "start": 2.19,
+    "end": 2.25,
+    "id": "w7"
+  },
+  {
+    "text": "at",
+    "start": 2.34,
+    "end": 2.48,
+    "id": "w8"
+  },
+  {
+    "text": "the",
+    "start": 2.48,
+    "end": 2.72,
+    "id": "w9"
+  },
+  {
+    "text": "sky",
+    "start": 2.72,
+    "end": 2.91,
+    "id": "w10"
+  },
+  {
+    "text": "and",
+    "start": 3.89,
+    "end": 4,
+    "id": "w11"
+  },
+  {
+    "text": "truly",
+    "start": 4,
+    "end": 5.13,
+    "id": "w12"
+  },
+  {
+    "text": "wondered?",
+    "start": 5.15,
+    "end": 7,
+    "id": "w13"
+  },
+  {
+    "text": "Beyond",
+    "start": 7.25,
+    "end": 7.67,
+    "id": "w14"
+  },
+  {
+    "text": "the",
+    "start": 7.75,
+    "end": 8.05,
+    "id": "w15"
+  },
+  {
+    "text": "clouds,",
+    "start": 8.05,
+    "end": 8.92,
+    "id": "w16"
+  },
+  {
+    "text": "beyond",
+    "start": 9.03,
+    "end": 9.84,
+    "id": "w17"
+  },
+  {
+    "text": "the",
+    "start": 9.84,
+    "end": 9.99,
+    "id": "w18"
+  },
+  {
+    "text": "stars,",
+    "start": 10.89,
+    "end": 11.14,
+    "id": "w19"
+  },
+  {
+    "text": "are",
+    "start": 11.14,
+    "end": 11.36,
+    "id": "w20"
+  },
+  {
+    "text": "galaxies",
+    "start": 11.36,
+    "end": 11.95,
+    "id": "w21"
+  },
+  {
+    "text": "stretching",
+    "start": 11.95,
+    "end": 12.26,
+    "id": "w22"
+  },
+  {
+    "text": "farther",
+    "start": 12.7,
+    "end": 13,
+    "id": "w23"
+  },
+  {
+    "text": "than",
+    "start": 13,
+    "end": 13.33,
+    "id": "w24"
+  },
+  {
+    "text": "we",
+    "start": 13.33,
+    "end": 13.49,
+    "id": "w25"
+  },
+  {
+    "text": "can",
+    "start": 13.49,
+    "end": 13.76,
+    "id": "w26"
+  },
+  {
+    "text": "imagine?",
+    "start": 14,
+    "end": 17,
+    "id": "w27"
+  },
+  {
+    "text": "And",
+    "start": 17.25,
+    "end": 17.39,
+    "id": "w28"
+  },
+  {
+    "text": "here",
+    "start": 17.39,
+    "end": 17.91,
+    "id": "w29"
+  },
+  {
+    "text": "we",
+    "start": 17.91,
+    "end": 18.17,
+    "id": "w30"
+  },
+  {
+    "text": "are,",
+    "start": 18.17,
+    "end": 18.81,
+    "id": "w31"
+  },
+  {
+    "text": "on",
+    "start": 18.82,
+    "end": 19.08,
+    "id": "w32"
+  },
+  {
+    "text": "this",
+    "start": 19.08,
+    "end": 19.59,
+    "id": "w33"
+  },
+  {
+    "text": "tiny",
+    "start": 19.59,
+    "end": 19.92,
+    "id": "w34"
+  },
+  {
+    "text": "world,",
+    "start": 20.77,
+    "end": 21.03,
+    "id": "w35"
+  },
+  {
+    "text": "alive,",
+    "start": 21.03,
+    "end": 22,
+    "id": "w36"
+  },
+  {
+    "text": "able",
+    "start": 22,
+    "end": 22.26,
+    "id": "w37"
+  },
+  {
+    "text": "to",
+    "start": 22.64,
+    "end": 22.96,
+    "id": "w38"
+  },
+  {
+    "text": "wonder",
+    "start": 22.96,
+    "end": 24.01,
+    "id": "w39"
+  },
+  {
+    "text": "about",
+    "start": 24.01,
+    "end": 24.7,
+    "id": "w40"
+  },
+  {
+    "text": "it",
+    "start": 24.7,
+    "end": 25,
+    "id": "w41"
+  },
+  {
+    "text": "all.",
+    "start": 25,
+    "end": 26,
+    "id": "w42"
+  },
+  {
+    "text": "But",
+    "start": 26,
+    "end": 26.25,
+    "id": "w43"
+  },
+  {
+    "text": "what",
+    "start": 26.25,
+    "end": 26.56,
+    "id": "w44"
+  },
+  {
+    "text": "if",
+    "start": 26.56,
+    "end": 26.66,
+    "id": "w45"
+  },
+  {
+    "text": "the",
+    "start": 26.75,
+    "end": 26.96,
+    "id": "w46"
+  },
+  {
+    "text": "universe",
+    "start": 26.96,
+    "end": 27.59,
+    "id": "w47"
+  },
+  {
+    "text": "is",
+    "start": 27.59,
+    "end": 27.75,
+    "id": "w48"
+  },
+  {
+    "text": "more",
+    "start": 27.75,
+    "end": 28.07,
+    "id": "w49"
+  },
+  {
+    "text": "than",
+    "start": 28.07,
+    "end": 28.39,
+    "id": "w50"
+  },
+  {
+    "text": "something",
+    "start": 28.39,
+    "end": 28.91,
+    "id": "w51"
+  },
+  {
+    "text": "to",
+    "start": 28.91,
+    "end": 29.26,
+    "id": "w52"
+  },
+  {
+    "text": "admire?",
+    "start": 29.26,
+    "end": 30,
+    "id": "w53"
+  },
+  {
+    "text": "What",
+    "start": 30.25,
+    "end": 30.57,
+    "id": "w54"
+  },
+  {
+    "text": "if",
+    "start": 30.57,
+    "end": 30.85,
+    "id": "w55"
+  },
+  {
+    "text": "it's",
+    "start": 30.85,
+    "end": 31.41,
+    "id": "w56"
+  },
+  {
+    "text": "something",
+    "start": 31.41,
+    "end": 32.69,
+    "id": "w57"
+  },
+  {
+    "text": "to",
+    "start": 32.69,
+    "end": 32.91,
+    "id": "w58"
+  },
+  {
+    "text": "reflect",
+    "start": 32.98,
+    "end": 33.96,
+    "id": "w59"
+  },
+  {
+    "text": "upon?",
+    "start": 33.96,
+    "end": 35,
+    "id": "w60"
+  },
+  {
+    "text": "The",
+    "start": 35.25,
+    "end": 35.3,
+    "id": "w61"
+  },
+  {
+    "text": "Quaran",
+    "start": 35.3,
+    "end": 35.89,
+    "id": "w62"
+  },
+  {
+    "text": "tells",
+    "start": 35.89,
+    "end": 36.38,
+    "id": "w63"
+  },
+  {
+    "text": "us",
+    "start": 36.38,
+    "end": 36.58,
+    "id": "w64"
+  },
+  {
+    "text": "that,",
+    "start": 36.58,
+    "end": 37.13,
+    "id": "w65"
+  },
+  {
+    "text": "in",
+    "start": 37.19,
+    "end": 37.25,
+    "id": "w66"
+  },
+  {
+    "text": "the",
+    "start": 37.34,
+    "end": 37.51,
+    "id": "w67"
+  },
+  {
+    "text": "creation",
+    "start": 37.58,
+    "end": 37.91,
+    "id": "w68"
+  },
+  {
+    "text": "of",
+    "start": 38.16,
+    "end": 38.31,
+    "id": "w69"
+  },
+  {
+    "text": "the",
+    "start": 38.31,
+    "end": 38.54,
+    "id": "w70"
+  },
+  {
+    "text": "heavens",
+    "start": 38.89,
+    "end": 39.08,
+    "id": "w71"
+  },
+  {
+    "text": "and",
+    "start": 39.1,
+    "end": 39.32,
+    "id": "w72"
+  },
+  {
+    "text": "the",
+    "start": 39.32,
+    "end": 39.55,
+    "id": "w73"
+  },
+  {
+    "text": "earth,",
+    "start": 39.55,
+    "end": 40,
+    "id": "w74"
+  },
+  {
+    "text": "and",
+    "start": 40.25,
+    "end": 40.31,
+    "id": "w75"
+  },
+  {
+    "text": "the",
+    "start": 40.31,
+    "end": 40.62,
+    "id": "w76"
+  },
+  {
+    "text": "changing",
+    "start": 40.62,
+    "end": 41.44,
+    "id": "w77"
+  },
+  {
+    "text": "of",
+    "start": 41.44,
+    "end": 41.64,
+    "id": "w78"
+  },
+  {
+    "text": "night",
+    "start": 41.64,
+    "end": 42.12,
+    "id": "w79"
+  },
+  {
+    "text": "and",
+    "start": 42.19,
+    "end": 42.46,
+    "id": "w80"
+  },
+  {
+    "text": "day,",
+    "start": 42.46,
+    "end": 42.91,
+    "id": "w81"
+  },
+  {
+    "text": "there",
+    "start": 42.91,
+    "end": 43.03,
+    "id": "w82"
+  },
+  {
+    "text": "are",
+    "start": 43.03,
+    "end": 43.89,
+    "id": "w83"
+  },
+  {
+    "text": "signs",
+    "start": 43.89,
+    "end": 44.3,
+    "id": "w84"
+  },
+  {
+    "text": "for",
+    "start": 44.3,
+    "end": 44.6,
+    "id": "w85"
+  },
+  {
+    "text": "people",
+    "start": 44.6,
+    "end": 45.13,
+    "id": "w86"
+  },
+  {
+    "text": "of",
+    "start": 45.19,
+    "end": 45.27,
+    "id": "w87"
+  },
+  {
+    "text": "understanding.",
+    "start": 46.68,
+    "end": 47,
+    "id": "w88"
+  },
+  {
+    "text": "So",
+    "start": 47.25,
+    "end": 47.29,
+    "id": "w89"
+  },
+  {
+    "text": "tonight,",
+    "start": 47.29,
+    "end": 48.61,
+    "id": "w90"
+  },
+  {
+    "text": "look",
+    "start": 48.61,
+    "end": 49.13,
+    "id": "w91"
+  },
+  {
+    "text": "up,",
+    "start": 49.19,
+    "end": 49.78,
+    "id": "w92"
+  },
+  {
+    "text": "reflect",
+    "start": 49.78,
+    "end": 49.99,
+    "id": "w93"
+  },
+  {
+    "text": "on",
+    "start": 50.89,
+    "end": 51.07,
+    "id": "w94"
+  },
+  {
+    "text": "what",
+    "start": 51.1,
+    "end": 51.69,
+    "id": "w95"
+  },
+  {
+    "text": "you",
+    "start": 51.69,
+    "end": 52.11,
+    "id": "w96"
+  },
+  {
+    "text": "see,",
+    "start": 52.11,
+    "end": 52.86,
+    "id": "w97"
+  },
+  {
+    "text": "and",
+    "start": 52.86,
+    "end": 53.3,
+    "id": "w98"
+  },
+  {
+    "text": "ask",
+    "start": 53.3,
+    "end": 53.74,
+    "id": "w99"
+  },
+  {
+    "text": "yourself,",
+    "start": 54,
+    "end": 55.11,
+    "id": "w100"
+  },
+  {
+    "text": "who",
+    "start": 55.14,
+    "end": 55.33,
+    "id": "w101"
+  },
+  {
+    "text": "created",
+    "start": 55.33,
+    "end": 56.1,
+    "id": "w102"
+  },
+  {
+    "text": "all",
+    "start": 56.1,
+    "end": 56.24,
+    "id": "w103"
+  },
+  {
+    "text": "of",
+    "start": 56.24,
+    "end": 56.4,
+    "id": "w104"
+  },
+  {
+    "text": "this?",
+    "start": 56.4,
+    "end": 57,
+    "id": "w105"
+  },
+  {
+    "text": "Discover",
+    "start": 57.25,
+    "end": 58.23,
+    "id": "w106"
+  },
+  {
+    "text": "your",
+    "start": 58.3,
+    "end": 58.89,
+    "id": "w107"
+  },
+  {
+    "text": "Creator.",
+    "start": 58.89,
+    "end": 60,
+    "id": "w108"
+  }
+]

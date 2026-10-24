@@ -1,0 +1,254 @@
+<template>
+  <style>
+
+@font-face { font-family: "Amiri Quran"; src: url("assets/fonts/amiri-quran-arabic-400-normal.woff2") format("woff2"); }
+@font-palette-values --gold { font-family: "Amiri Quran"; override-colors: 0 #D9B977, 1 #D9B977, 2 #D9B977, 3 #D9B977, 4 #D9B977, 5 #D9B977, 6 #D9B977, 7 #D9B977; }
+
+    #root { position: absolute; inset: 0; }
+    #s1-wrap { position: absolute; inset: 0; background: #04060D; }
+    #s1-cv { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+
+    #s1-hook { position: absolute; left: 90px; width: 900px; top: 470px; text-align: center; }
+    #s1-big { font-family: "EB Garamond", serif; font-weight: 500; font-size: 176px; line-height: 1; color: #F4F1EA;
+      letter-spacing: -0.01em; text-shadow: 0 4px 40px rgba(0,0,0,0.6); }
+    #s1-big .a { color: #D9B977; }
+    #s1-sub { margin-top: 34px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 38px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #D9B977; text-shadow: 0 2px 18px rgba(0,0,0,0.8); }
+
+  </style>
+  <div data-hf-id="hf-za9e" id="root" data-composition-id="s1" data-width="1080" data-height="1920" data-duration="7.4">
+    <div data-hf-id="hf-3ome" id="s1-wrap" class="clip" data-start="0" data-duration="7.4" data-track-index="0">
+      <canvas data-hf-id="hf-slyy" id="s1-cv" width="1080" height="1920"></canvas>
+      <div data-hf-id="hf-wz1n" id="s1-hook"><div data-hf-id="hf-vi77" id="s1-big">Look <span data-hf-id="hf-0f5b" class="a">up.</span></div><div data-hf-id="hf-14yb" id="s1-sub">Think about who created this.</div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+
+const TAU = Math.PI * 2;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const sstep = (a, b, v) => { const x = clamp((v - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
+const lerp = (a, b, x) => a + (b - a) * x;
+const easeOut = (x) => 1 - Math.pow(1 - clamp(x, 0, 1), 3);
+const easeInOut = (x) => { x = clamp(x, 0, 1); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+function rng(seed) { return function () { seed |= 0; seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+function gauss(r) { return Math.sqrt(-2 * Math.log(r() + 1e-9)) * Math.cos(TAU * r()); }
+
+// 3D value noise on a hashed lattice.
+function hash3(x, y, z) { let h = (x * 374761393 + y * 668265263 + z * 2147483647) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; }
+function noise3(x, y, z) {
+  const xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+  const xf = x - xi, yf = y - yi, zf = z - zi;
+  const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf), w = zf * zf * (3 - 2 * zf);
+  const c = (a, b, d) => hash3(xi + a, yi + b, zi + d);
+  const x00 = lerp(c(0, 0, 0), c(1, 0, 0), u), x10 = lerp(c(0, 1, 0), c(1, 1, 0), u);
+  const x01 = lerp(c(0, 0, 1), c(1, 0, 1), u), x11 = lerp(c(0, 1, 1), c(1, 1, 1), u);
+  return lerp(lerp(x00, x10, v), lerp(x01, x11, v), w);
+}
+function fbm3(x, y, z, oct) { let s = 0, a = 0.5, f = 1, n = 0; for (let i = 0; i < oct; i++) { s += a * noise3(x * f, y * f, z * f); n += a; a *= 0.5; f *= 2.03; } return s / n; }
+function fbm1(x, seed, oct) { return fbm3(x, seed * 7.13, seed * 3.7, oct); }
+
+function makeStars(seed, n, w, h) {
+  const r = rng(seed), s = [];
+  for (let i = 0; i < n; i++) s.push({ x: r() * w, y: r() * h, b: Math.pow(r(), 4), p: r() * TAU, k: 0.5 + r() * 1.6, c: r() });
+  return s;
+}
+function starColor(c) { return c < 0.12 ? "255,214,170" : c < 0.3 ? "185,205,255" : "255,255,255"; }
+function drawStars(ctx, stars, t, ox, oy, sc, alpha, cx, cy) {
+  cx = cx === undefined ? 540 : cx; cy = cy === undefined ? 960 : cy;
+  for (const s of stars) {
+    const x = cx + (s.x + ox - cx) * sc, y = cy + (s.y + oy - cy) * sc;
+    if (x < -10 || x > 1090 || y < -10 || y > 1930) continue;
+    const tw = 0.7 + 0.3 * Math.sin(t * s.k * 2.2 + s.p);
+    const a = alpha * (0.22 + 0.78 * s.b) * tw;
+    const rad = (0.7 + s.b * 2.3) * Math.sqrt(sc);
+    ctx.fillStyle = "rgba(" + starColor(s.c) + "," + a.toFixed(3) + ")";
+    ctx.beginPath(); ctx.arc(x, y, rad, 0, TAU); ctx.fill();
+    if (s.b > 0.55) {
+      const g = ctx.createRadialGradient(x, y, 0, x, y, rad * 7);
+      g.addColorStop(0, "rgba(" + starColor(s.c) + "," + (a * 0.35).toFixed(3) + ")");
+      g.addColorStop(1, "rgba(" + starColor(s.c) + ",0)");
+      ctx.fillStyle = g; ctx.fillRect(x - rad * 7, y - rad * 7, rad * 14, rad * 14);
+    }
+  }
+}
+
+// The Milky Way: a band of fine dust, glow and a dark lane, drawn once to an offscreen canvas.
+function makeMilkyWay(seed, w, h) {
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const x = c.getContext("2d"), r = rng(seed);
+  for (let i = 0; i < 60; i++) {
+    const u = r(), off = gauss(r) * w * 0.07;
+    const px = w / 2 + off, py = u * h, rad = 60 + r() * 160;
+    const g = x.createRadialGradient(px, py, 0, px, py, rad);
+    const warm = r() < 0.35;
+    g.addColorStop(0, warm ? "rgba(255,220,190,0.07)" : "rgba(170,190,255,0.06)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    x.fillStyle = g; x.fillRect(px - rad, py - rad, rad * 2, rad * 2);
+  }
+  for (let i = 0; i < 26000; i++) {
+    const py = r() * h, off = gauss(r) * w * 0.09 + Math.sin(py / h * 5) * w * 0.02;
+    const a = 0.08 + Math.pow(r(), 3) * 0.5;
+    x.fillStyle = "rgba(235,235,255," + a.toFixed(3) + ")";
+    x.fillRect(w / 2 + off, py, r() < 0.9 ? 1 : 2, 1);
+  }
+  x.globalCompositeOperation = "destination-out";
+  for (let i = 0; i < 90; i++) {
+    const py = r() * h, px = w / 2 + Math.sin(py / h * 7 + 1) * w * 0.025 + gauss(r) * 10, rad = 20 + r() * 45;
+    const g = x.createRadialGradient(px, py, 0, px, py, rad);
+    g.addColorStop(0, "rgba(0,0,0,0.35)"); g.addColorStop(1, "rgba(0,0,0,0)");
+    x.fillStyle = g; x.fillRect(px - rad, py - rad, rad * 2, rad * 2);
+  }
+  return c;
+}
+
+// Earth: an equirectangular texture made once from noise, shaded per pixel on a sphere.
+const TEX_W = 1024, TEX_H = 512;
+function makeEarthTexture() {
+  const land = new Float32Array(TEX_W * TEX_H), cloud = new Float32Array(TEX_W * TEX_H), city = new Float32Array(TEX_W * TEX_H);
+  for (let j = 0; j < TEX_H; j++) {
+    const lat = (0.5 - (j + 0.5) / TEX_H) * Math.PI;
+    for (let i = 0; i < TEX_W; i++) {
+      const lon = ((i + 0.5) / TEX_W) * TAU;
+      const X = Math.cos(lat) * Math.sin(lon), Y = Math.sin(lat), Z = Math.cos(lat) * Math.cos(lon);
+      const k = j * TEX_W + i;
+      land[k] = fbm3(X * 1.6 + 11, Y * 1.6 + 3, Z * 1.6 + 7, 5) - (Math.abs(Y) > 0.92 ? -0.25 : 0);
+      const sw = fbm3(X * 2 + 40, Y * 2, Z * 2, 2) * 2.5;
+      cloud[k] = fbm3(X * 3.2 + sw, Y * 6 + 20, Z * 3.2 - sw, 4);
+      const pop = sstep(0.58, 0.72, fbm3(X * 9 + 5, Y * 9, Z * 9, 3)), sp = hash3(i, j, 7);
+      city[k] = sp > 0.82 ? pop * (0.4 + 0.6 * hash3(i, j, 9)) : 0;
+    }
+  }
+  return { land, cloud, city };
+}
+const earthBuf = {};
+function drawEarth(ctx, tex, cx, cy, R, rot, sun, cloudShift) {
+  const S = Math.max(64, Math.min(760, Math.round(R * 2)));
+  if (!earthBuf[S]) { const c = document.createElement("canvas"); c.width = c.height = S; earthBuf[S] = { c, x: c.getContext("2d"), img: c.getContext("2d").createImageData(S, S) }; }
+  const B = earthBuf[S], d = B.img.data; d.fill(0);
+  const tilt = -0.41, ct = Math.cos(tilt), st = Math.sin(tilt);
+  for (let j = 0; j < S; j++) {
+    const y = 1 - ((j + 0.5) / S) * 2;
+    for (let i = 0; i < S; i++) {
+      const x = ((i + 0.5) / S) * 2 - 1, d2 = x * x + y * y;
+      if (d2 >= 1) continue;
+      const z = Math.sqrt(1 - d2);
+      const l = x * sun[0] + y * sun[1] + z * sun[2];
+      const day = sstep(-0.12, 0.18, l);
+      const nx = x * ct - y * st, ny = x * st + y * ct;
+      const lat = Math.asin(ny), lon = Math.atan2(nx, z) + rot;
+      let u = Math.floor((((lon / TAU) % 1 + 1) % 1) * TEX_W), v = Math.floor((0.5 - lat / Math.PI) * TEX_H);
+      v = clamp(v, 0, TEX_H - 1);
+      const k = v * TEX_W + u;
+      const h = tex.land[k], isLand = h > 0.53, polar = Math.abs(ny) > 0.9;
+      let r, g, b;
+      if (polar) { r = 225; g = 232; b = 240; }
+      else if (isLand) { const dry = sstep(0.56, 0.68, h); r = lerp(46, 150, dry); g = lerp(84, 124, dry); b = lerp(44, 82, dry); }
+      else { const deep = sstep(0.53, 0.3, h); r = lerp(26, 8, deep); g = lerp(92, 34, deep); b = lerp(150, 92, deep); }
+      const cu = ((u + Math.floor(cloudShift * TEX_W)) % TEX_W + TEX_W) % TEX_W;
+      const cl = sstep(0.52, 0.72, tex.cloud[v * TEX_W + cu]);
+      r = lerp(r, 245, cl * 0.9); g = lerp(g, 248, cl * 0.9); b = lerp(b, 252, cl * 0.9);
+      const limb = 0.45 + 0.55 * Math.sqrt(z);
+      const lit = day * limb * (0.35 + 0.75 * clamp(l + 0.15, 0, 1));
+      r *= lit; g *= lit; b *= lit;
+      if (!isLand && !polar && cl < 0.3) {
+        const hx = sun[0], hy = sun[1], hz = sun[2] + 1, hl = Math.hypot(hx, hy, hz);
+        const spec = Math.pow(clamp((x * hx + y * hy + z * hz) / hl, 0, 1), 60) * day;
+        r += 190 * spec; g += 180 * spec; b += 150 * spec;
+      }
+      if (isLand && !polar) {
+        const lights = 0.85 * tex.city[k] * (1 - day) * (1 - cl * 0.8) * sstep(0, 0.35, z);
+        r += 255 * lights; g += 175 * lights; b += 90 * lights;
+      }
+      const night = (1 - day) * 0.06;
+      r += 12 * night * 4; g += 18 * night * 4; b += 34 * night * 4;
+      const p = (j * S + i) * 4, edge = clamp((1 - Math.sqrt(d2)) * S * 0.5, 0, 1);
+      d[p] = r; d[p + 1] = g; d[p + 2] = b; d[p + 3] = 255 * edge;
+    }
+  }
+  B.x.putImageData(B.img, 0, 0);
+  ctx.save(); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(B.c, cx - R, cy - R, R * 2, R * 2);
+  // Atmosphere: a thin blue rim, brighter towards the sun.
+  ctx.globalCompositeOperation = "lighter";
+  const g = ctx.createRadialGradient(cx, cy, R * 0.94, cx, cy, R * 1.09);
+  g.addColorStop(0, "rgba(60,130,255,0)"); g.addColorStop(0.45, "rgba(80,150,255,0.28)"); g.addColorStop(1, "rgba(40,90,255,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R * 1.1, 0, TAU); ctx.fill();
+  const sl = Math.hypot(sun[0], sun[1]) || 1, sx = cx + (sun[0] / sl) * R, sy = cy - (sun[1] / sl) * R;
+  const g2 = ctx.createRadialGradient(sx, sy, 0, sx, sy, R * 1.1);
+  g2.addColorStop(0, "rgba(140,190,255,0.45)"); g2.addColorStop(1, "rgba(140,190,255,0)");
+  ctx.fillStyle = g2; ctx.beginPath(); ctx.arc(cx, cy, R * 1.06, 0, TAU); ctx.arc(cx, cy, R * 0.985, 0, TAU, true); ctx.fill();
+  ctx.restore();
+}
+function sunGlare(ctx, x, y, size, a) {
+  ctx.save(); ctx.globalCompositeOperation = "lighter";
+  let g = ctx.createRadialGradient(x, y, 0, x, y, size);
+  g.addColorStop(0, "rgba(255,250,235," + a + ")"); g.addColorStop(0.08, "rgba(255,230,180," + a * 0.8 + ")");
+  g.addColorStop(0.35, "rgba(255,190,120," + a * 0.18 + ")"); g.addColorStop(1, "rgba(255,170,100,0)");
+  ctx.fillStyle = g; ctx.fillRect(x - size, y - size, size * 2, size * 2);
+  g = ctx.createLinearGradient(x - size * 1.6, y, x + size * 1.6, y);
+  g.addColorStop(0, "rgba(255,220,170,0)"); g.addColorStop(0.5, "rgba(255,235,200," + a * 0.5 + ")"); g.addColorStop(1, "rgba(255,220,170,0)");
+  ctx.fillStyle = g; ctx.fillRect(x - size * 1.6, y - 2, size * 3.2, 4);
+  ctx.restore();
+}
+function ridgeLine(seed, y0, amp, x0, x1, step) {
+  const pts = [];
+  for (let x = x0; x <= x1; x += step) { const n = fbm1(x * 0.0022 + seed, seed, 5); pts.push([x, y0 - amp * (1 - Math.abs(n * 2 - 1)) * 1.4 + amp * 0.5 - amp * 0.3 * Math.sin(x * 0.0011 + seed)]); }
+  return pts;
+}
+function fillRidge(ctx, pts, color, rim) {
+  ctx.beginPath(); ctx.moveTo(pts[0][0], 4000);
+  for (const p of pts) ctx.lineTo(p[0], p[1]);
+  ctx.lineTo(pts[pts.length - 1][0], 4000); ctx.closePath(); ctx.fillStyle = color; ctx.fill();
+  if (rim) { ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.strokeStyle = rim; ctx.lineWidth = 2; ctx.stroke(); }
+}
+function skyGradient(ctx, stops) {
+  const g = ctx.createLinearGradient(0, 0, 0, 1920);
+  stops.forEach(([o, c]) => g.addColorStop(o, c));
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920);
+}
+function vignette(ctx, a) {
+  const g = ctx.createRadialGradient(540, 900, 500, 540, 960, 1250);
+  g.addColorStop(0, "rgba(0,0,0,0)"); g.addColorStop(1, "rgba(0,0,0," + a + ")");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920);
+}
+
+      const cv = document.getElementById("s1-cv"), ctx = cv.getContext("2d");
+
+      const stars = makeStars(11, 1500, 1500, 3400);
+      const mw = makeMilkyWay(11 + 1, 900, 3600);
+      const ridgeFar = ridgeLine(3.1, 0, 70, -300, 1400, 8), ridgeNear = ridgeLine(8.7, 0, 120, -300, 1400, 6);
+      function world(t, horizon, sc, alpha) {
+        // horizon: the ridge's screen y; sc: zoom about the frame centre.
+        skyGradient(ctx, [[0, "#02040B"], [0.55, "#060B1C"], [1, "#0B1430"]]);
+        ctx.save(); ctx.translate(540, 960); ctx.scale(sc, sc); ctx.translate(-540, -960);
+        const lift = horizon - 1500;
+        ctx.save(); ctx.translate(540, 620 + lift * 0.55); ctx.rotate(-0.42);
+        ctx.globalAlpha = 0.95 * alpha; ctx.drawImage(mw, -450, -1800); ctx.restore();
+        drawStars(ctx, stars, t, -210, -1700 + lift * 0.6, 1, alpha);
+        const hg = ctx.createLinearGradient(0, horizon - 420, 0, horizon + 40);
+        hg.addColorStop(0, "rgba(40,70,140,0)"); hg.addColorStop(1, "rgba(60,95,170,0.32)");
+        ctx.fillStyle = hg; ctx.fillRect(-400, horizon - 420, 1900, 460);
+        ctx.save(); ctx.translate(0, horizon - 40); fillRidge(ctx, ridgeFar, "#0A1024", "rgba(120,150,210,0.18)"); ctx.restore();
+        ctx.save(); ctx.translate(0, horizon + 60); fillRidge(ctx, ridgeNear, "#03050C", "rgba(150,170,220,0.22)"); ctx.restore();
+        ctx.restore();
+        vignette(ctx, 0.55);
+      }
+
+      function draw(t) {
+        // Already tilting up at frame 0: the ridge sinks as the sky opens.
+        const k = t / 7.4;
+        world(t, lerp(1560, 2050, easeInOut(k * 0.9 + 0.1)), lerp(1.08, 1.0, k), 1);
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const clock = { t: 0 };
+      tl.to(clock, { t: 7.4, duration: 7.4, ease: "none", onUpdate: () => draw(clock.t) }, 0);
+    tl.fromTo("#s1-big", { scale: 1.06 }, { scale: 1, duration: 5.6, ease: "power1.out" }, 0);
+    tl.to("#s1-hook", { opacity: 0, filter: "blur(10px)", y: -30, duration: 0.7, ease: "power2.in" }, 5.6);
+
+      draw(0);
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>
