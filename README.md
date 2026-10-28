@@ -17,15 +17,15 @@ Each video folder has a `REVIEW.md`: what's in it, how it was checked, and what'
 
 ## Reference videos
 
-[`reference-video/`](reference-video/) holds two short reels Shabbar shared as the target style
-(other creators' work, kept for study only; never re-post them as ours):
-
-- `reference-1.mp4`: two prophets' stories told side by side through shared Quran wording.
-- `reference-2.mp4`: two prophets compared by counting mentions. We don't make
-  numerical-miracle claims (see the rules below), so only its look is used.
+`reference-video/` lives **only on Yar's Mac** (it's in `.gitignore`): 33 reels from the
+"Every sign leads group" Instagram chat, one folder per creator, listed in
+`reference-video/INDEX.md`. They are other creators' work, kept for study, never re-posted or
+pushed here. `python3 reference-video/fetch.py` re-downloads them from `links.txt` (needs yt-dlp
+and the Instagram login in Chrome profile "TeamYarMalik").
 
 What we take from them: two subjects side by side, one Arabic word at a time lit in gold, thin line
-drawings, an italic serif line with the verse reference, a dark warm background, 40–55 s.
+drawings, an italic serif line with the verse reference, a dark warm background, 40–55 s. Several
+make numerical-miracle claims; we use their look only (see the rules below).
 
 ## How a video is made
 

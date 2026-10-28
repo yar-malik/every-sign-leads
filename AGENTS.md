@@ -16,7 +16,7 @@ Full how-to (setup, making a video, posting): `README.md`. Keep its video table 
   expo-router, NativeWind, Zustand) and use the owner's existing accounts (see QV `AGENTS.md`).
 - Pilot 01 "Look up" rendered: `videos/look-up/renders/look-up.mp4` (60 s, 1080x1920).
 - 02 "Sun and Moon" rendered: `videos/sun-and-moon/renders/sun-and-moon.mp4` (56 s), styled on
-  `reference-video/` (two reference reels from Shabbar: text-led, gold line art, no voice).
+  `reference-video/` (local only, gitignored; 33 reels listed in its INDEX.md).
   Its `scripts/mix.sh` sets timing automatically from a `gap` per line in narration.json.
 - 01b "Look up" restyled in the reference look: `videos/look-up-v2/` (same voice), unlisted at
   https://www.youtube.com/watch?v=pvqzYf-fPQ8.

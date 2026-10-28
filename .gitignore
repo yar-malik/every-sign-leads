@@ -1,3 +1,5 @@
 node_modules/
 .hyperframes/
 .DS_Store
+# Reference reels are other creators' work and large: they stay on the Mac, never on GitHub.
+reference-video/
